@@ -5,5 +5,27 @@
   "repository": "https://github.com/waterssh/the-embalmer.git",
   "author": "Joseph Estevez <joseph.estevez@protonmail.com>",
   "license": "LGPL-2.0-or-later",
-  "private": false
+  "private": false,
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "dev": "nodemon --exec 'ts-node src/'"
+  },
+  "dependencies": {
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "typescript": "^4.6.2"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.17.5",
+    "@babel/preset-env": "^7.16.11",
+    "@babel/register": "^7.17.0",
+    "@types/node": "^17.0.21",
+    "@types/react": "^17.0.39",
+    "@types/react-dom": "^17.0.11",
+    "jest": "^27.5.1",
+    "nodemon": "^2.0.15",
+    "ts-jest": "^27.1.3",
+    "ts-node": "^10.5.0"
+  }
 }
