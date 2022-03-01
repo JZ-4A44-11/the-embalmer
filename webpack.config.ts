@@ -1,11 +1,11 @@
-import { join, resolve } from 'path/posix';
+import { join, resolve } from 'path';
 import { Configuration } from 'webpack';
 import * as HtmlWebpackPlugin from 'html-webpack-plugin';
 
 const publicDir = join(__dirname, 'public');
 
 const config: Configuration = {
-  entry: './src/index.ts',
+  entry: './src/main.tsx',
   output: {
     path: join(__dirname, 'dist'),
     filename: 'index.bundle.js',
@@ -19,7 +19,7 @@ const config: Configuration = {
   module: {
     rules: [
       {
-        test: /\/(js|ts)x$/,
+        test: /\.(js|ts)x$/,
         use: ['babel-loader'],
         exclude: /node_module/,
       },
