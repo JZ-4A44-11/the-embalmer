@@ -10,13 +10,14 @@
     "build": "yarn build:types && yarn build:js",
     "build:types": "tsc --emitDeclarationOnly",
     "build:js": "babel src --out-dir dist --extensions \".ts,.tsx\" --source-maps inline",
+    "lint": "eslint \"{src,libs,test}/**/*.{ts,tsx}\" --fix",
     "start": "node dist/index.js",
     "dev": "nodemon --exec 'ts-node src/'"
   },
   "dependencies": {
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "typescript": "^4.6.2"
+    "typescript": "^4.5.5"
   },
   "devDependencies": {
     "@babel/cli": "^7.17.6",
@@ -28,9 +29,21 @@
     "@types/node": "^17.0.21",
     "@types/react": "^17.0.39",
     "@types/react-dom": "^17.0.11",
+    "@typescript-eslint/eslint-plugin": "^5.13.0",
+    "@typescript-eslint/parser": "^5.13.0",
+    "eslint": "^8.10.0",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-config-prettier": "^8.4.0",
+    "eslint-plugin-import": "^2.25.4",
+    "eslint-plugin-jsx-a11y": "^6.5.1",
+    "eslint-plugin-prettier": "^4.0.0",
+    "eslint-plugin-react": "^7.29.2",
+    "eslint-plugin-react-hooks": "^4.3.0",
     "jest": "^27.5.1",
     "nodemon": "^2.0.15",
+    "prettier": "^2.5.1",
     "ts-jest": "^27.1.3",
-    "ts-node": "^10.5.0"
+    "ts-node": "^10.5.0",
+    "webpack": "^5.69.1"
   }
 }
