@@ -1,6 +1,8 @@
-import { join } from 'path/posix';
+import { join, resolve } from 'path/posix';
 import { Configuration } from 'webpack';
 import * as HtmlWebpackPlugin from 'html-webpack-plugin';
+
+const publicDir = join(__dirname, 'public');
 
 const config: Configuration = {
   entry: './src/index.ts',
@@ -8,29 +10,29 @@ const config: Configuration = {
     path: join(__dirname, 'dist'),
     filename: 'index.bundle.js',
   },
-  
+
   resolve: {
-    extensions: ['.tsx', '.ts'],
+    modules: [resolve(__dirname, 'src'), resolve(__dirname, 'node_modules')],
+    extensions: ['.ts', '.tsx', '.js'],
   },
 
   module: {
     rules: [
       {
-        test: /\.(ts|tsx)$/,
-        exclude: /node_module/,
+        test: /\/(js|ts)x$/,
         use: ['babel-loader'],
-      },
-      {
-        test: /\.(css|scss)$/,
-        use: ['style-loader', 'css-loader'],
+        exclude: /node_module/,
       },
     ],
   },
+
   plugins: [
     new HtmlWebpackPlugin({
-      template: join(__dirname, 'public', 'index.html'),
+      template: join(publicDir, 'index.html'),
+      favicon: join(publicDir, 'favicon.jpg'),
     }),
   ],
+  devtool: 'source-map',
 };
 
 export default config;
