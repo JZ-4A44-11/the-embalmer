@@ -1,0 +1,9 @@
+{
+  "name": "the-embalmer",
+  "version": "0.0.1",
+  "main": "src/index.ts",
+  "repository": "https://github.com/waterssh/the-embalmer.git",
+  "author": "Joseph Estevez <joseph.estevez@protonmail.com>",
+  "license": "LGPL-2.0-or-later",
+  "private": false
+}
