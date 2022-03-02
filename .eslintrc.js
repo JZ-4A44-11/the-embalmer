@@ -1,5 +1,9 @@
 module.exports = {
   root: true,
+  env: {
+    browser: true,
+    jest: true,
+  },
   parser: '@typescript-eslint/parser',
   parserOptions: {
     project: 'tsconfig.json',
@@ -16,16 +20,10 @@ module.exports = {
     'plugin:react/recommended',
     'plugin:prettier/recommended',
   ],
-  env: {
-    browser: true,
-    jest: true,
-  },
   ignorePatterns: ['.eslintrc.js', 'node_modules'],
   settings: {
     'import/resolver': {
-      node: {
-        extensions: ['.ts', '.tsx'],
-      },
+      typescript: {},
     },
   },
   rules: {
