@@ -1,5 +1,6 @@
 import { join, resolve } from 'path';
 import { Configuration } from 'webpack';
+import TsconfigPathsPlugin from 'tsconfig-paths-webpack-plugin';
 import * as HtmlWebpackPlugin from 'html-webpack-plugin';
 
 const publicDir = join(__dirname, 'public');
@@ -14,6 +15,7 @@ const config: Configuration = {
   resolve: {
     modules: [resolve(__dirname, 'src'), resolve(__dirname, 'node_modules')],
     extensions: ['.ts', '.tsx', '.js'],
+    plugins: [new TsconfigPathsPlugin()],
   },
 
   module: {
