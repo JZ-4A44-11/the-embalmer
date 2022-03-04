@@ -3,25 +3,25 @@ import {
   PayloadAction,
   createEntityAdapter,
 } from '@reduxjs/toolkit';
-import ITask from './interface';
+import { TaskStructure } from './task.dto';
 
-export type TaskState = ITask;
+export type TaskState = TaskStructure;
 
-const taskAdapter = createEntityAdapter<TaskState>({
+const taskAdapter = createEntityAdapter<TaskStructure>({
   selectId: (task) => task.id,
-  sortComparer: (x, y) => x.deadline.getTime() - y.deadline.getTime(),
+  sortComparer: (x, y) => x.deadline - y.deadline,
 });
 
 const taskSlicer = createSlice({
   name: 'tasks',
   initialState: taskAdapter.getInitialState(),
   reducers: {
-    tasksReceived: (state, action: PayloadAction<ITask[]>) => {
+    tasksReceived: (state, action: PayloadAction<TaskStructure[]>) => {
       taskAdapter.setAll(state, action.payload);
     },
-    addOn: taskAdapter.addOne,
+    addOne: taskAdapter.addOne,
   },
 });
 
-export const { addOn, tasksReceived } = taskSlicer.actions;
+export const { addOne, tasksReceived } = taskSlicer.actions;
 export default taskSlicer.reducer;
