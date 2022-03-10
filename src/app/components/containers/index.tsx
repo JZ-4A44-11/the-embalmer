@@ -11,12 +11,19 @@ const StyledContainer = styled.div`
   }
 `;
 
-export function Container({ children }): React.ReactElement {
+type ContainerProps = {
+  children: React.ReactNode;
+};
+
+const StyledFullScreenContainer = styled.div`
+  display: flex;
+  min-height: 100%;
+`;
+
+export function Container({ children }: ContainerProps): React.ReactElement {
   return <StyledContainer>{children}</StyledContainer>;
 }
 
-const StyledFullScreenContainer = styled.div``;
-
 export function FullScreenContainer(): React.ReactElement {
-  return <div />;
+  return <StyledFullScreenContainer />;
 }

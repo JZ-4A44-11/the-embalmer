@@ -1,5 +1,13 @@
-import reducer from './taskSlice';
+import taskSlicer from './task.slice';
+import inputUser from './actions/inputTask.action';
+import createTask from './services/createTask.service';
 
-export * from './taskSlice';
-export * from './task.dto';
-export { reducer };
+export const taskActions = {
+  addOne: inputUser,
+};
+export const taskService = {
+  create: createTask,
+};
+
+export * from './shared/models';
+export const taskReducer = taskSlicer.reducer;

@@ -1,12 +1,12 @@
-import { v4 as uuid } from 'uuid';
-import { IsNumber, IsString } from 'class-validator';
+import { IsBoolean, IsNumber, IsString } from 'class-validator';
+import { nanoid } from '@reduxjs/toolkit';
 
 export type TaskStructure = {
   id: string;
   name: string;
   description: string;
   createAt: string;
-  completeAt: string;
+  completed: boolean;
   deadline: number;
 };
 
@@ -14,7 +14,7 @@ export interface CreateTaskDto {
   name: string;
   description: string;
   deadline: number;
-  completeAt: string;
+  completed?: boolean;
 }
 
 export class Task implements TaskStructure {
@@ -30,18 +30,21 @@ export class Task implements TaskStructure {
   @IsString()
   createAt: string;
 
-  @IsString()
-  completeAt: string;
+  @IsBoolean()
+  completed: boolean;
 
   @IsNumber()
   deadline: number;
 
   constructor(props: CreateTaskDto) {
-    this.id = uuid();
+    this.id = nanoid();
     this.name = props.name;
     this.description = props.description;
     this.createAt = new Date().toDateString();
-    this.completeAt = props.completeAt;
     this.deadline = props.deadline;
+    this.completed = props.completed;
+    if (!props.completed) {
+      this.completed = false;
+    }
   }
 }

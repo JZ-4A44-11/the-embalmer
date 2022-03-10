@@ -1,34 +1,29 @@
-import React, { useEffect } from 'react';
+import * as React from 'react';
+import { useEffect } from 'react';
 import { RootState } from '@src/store';
 import { useDispatch, useSelector } from 'react-redux';
-import { CreateTaskDto } from './modules/tasks';
-import { createTask } from './modules/tasks/create.actions';
+import { taskService, taskActions } from './modules/tasks';
 import Router from './view';
 
 export default function App(): React.ReactElement {
-  const tasks = useSelector((state: RootState) => state.tasks);
+  const taskState = useSelector((state: RootState) => state.tasks);
   const dispatch = useDispatch();
+  const task = React.useMemo(
+    () =>
+      taskService.create({
+        name: 'mock',
+        description: '_',
+        deadline: Date.now(),
+      }),
+    []
+  );
 
   useEffect(() => {
-    async function addOnTask(task: CreateTaskDto) {
-      await createTask(task, dispatch);
-    }
-
-    addOnTask({
-      name: 'mock',
-      description: 'mock description',
-      deadline: Date.now(),
-      completeAt: Date.now().toString(),
-    });
-  }, []);
-
-  useEffect(() => {
-    console.log(tasks);
-  }, [tasks]);
+    task.then((res) => dispatch(taskActions.addOne(res)));
+  }, [taskState]);
 
   return (
     <section>
-      <div>{tasks.entities[0]?.name}</div>
       <Router />
     </section>
   );
