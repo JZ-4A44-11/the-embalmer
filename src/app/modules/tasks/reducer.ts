@@ -9,4 +9,6 @@ export default {
   ) => {
     taskAdapter.addMany(state, action.payload);
   },
+
+  addOne: taskAdapter.addOne,
 };

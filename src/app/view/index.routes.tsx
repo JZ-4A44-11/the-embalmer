@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import Home from './home';
+import Home from './pages/home';
 
 export default function Router(): React.ReactElement {
   return (
